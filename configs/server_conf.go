@@ -1,29 +1,28 @@
 package configs
 
 import (
-	"github.com/irisnet/iris-api-server/env"
-	"github.com/irisnet/iris-api-server/utils/constants"
+	"github.com/irisnet/irishub-server/env"
 )
 
 type configServer struct {
-	Host string
+	AddrNodeServer string
+	RpcServerPort  uint64
 }
 
 var ServerConfig configServer
 
 func init() {
 	var (
-		host string
+		rpcServerPort  uint64 = 9080
+		addrNodeServer        = "http://192.168.150.7:1317"
 	)
 
-	switch env.ENV {
-	case constants.ENV_DEV:
-		host = "0.0.0.0:9080"
-	case constants.ENV_PRO:
-		host = "0.0.0.0:80"
+	if env.AddrNodeServer != "" {
+		addrNodeServer = env.AddrNodeServer
 	}
 
 	ServerConfig = configServer{
-		Host: host,
+		AddrNodeServer: addrNodeServer,
+		RpcServerPort:  rpcServerPort,
 	}
 }

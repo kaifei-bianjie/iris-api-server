@@ -24,18 +24,21 @@
 #   go-tests = true
 #   unused-packages = true
 
-
-[[constraint]]
-  branch = "master"
-  name = "github.com/swaggo/gin-swagger"
-
 [[constraint]]
   branch = "v2"
   name = "gopkg.in/mgo.v2"
 
 [[constraint]]
-  branch = "master"
-  name = "github.com/gin-gonic/gin"
+  branch = "develop"
+  name = "github.com/irisnet/blockchain-rpc"
+  # TODO: delete source and change branch to version when deploy to stage
+  # source = "https://github.com/kaifei-bianjie/blockchain-rpc.git"
+
+[[constraint]]
+  branch = "develop"
+  name = "github.com/irisnet/irishub-rpc"
+  # TODO: delete source and change branch to version when deploy to stage
+  # source = "https://github.com/kaifei-bianjie/irishub-rpc.git"
 
 [prune]
   go-tests = true

@@ -3,3 +3,8 @@
 *.DS_Store
 vendor/
 *.log
+irishub-server
+irishub-server-unix
+docker/
+*.out
+**/gen_js/*.js

@@ -1,16 +1,15 @@
 package configs
 
 import (
-	"github.com/irisnet/iris-api-server/env"
-	"github.com/irisnet/iris-api-server/utils/constants"
+	"github.com/irisnet/irishub-server/env"
 )
 
 type configMongodb struct {
 	Host     string
+	Port     string
 	User     string
-	Port     int
-	DbName   string
 	Password string
+	DbName   string
 }
 
 var ConfMongodb configMongodb
@@ -18,28 +17,42 @@ var ConfMongodb configMongodb
 func init() {
 	var (
 		host     string
+		port     string
 		user     string
-		port     int
-		dbName   string
 		password string
+		dbName   string
 	)
 
-	switch env.ENV {
-	case constants.ENV_DEV:
-		host = "127.0.0.1"
-		port = 27117
-		dbName = "sync_iris"
-	case constants.ENV_PRO:
-		host = "127.0.0.1"
-		port = 27117
-		dbName = "sync_iris"
+	host = "192.168.150.7"
+	if env.DbHost != "" {
+		host = env.DbHost
+	}
+
+	port = "30000"
+	if env.DbPort != "" {
+		port = env.DbPort
+	}
+
+	user = "iris"
+	if env.DbUser != "" {
+		user = env.DbUser
+	}
+
+	password = "irispassword"
+	if env.DbPasswd != "" {
+		password = env.DbPasswd
+	}
+
+	dbName = "sync-iris"
+	if env.DbDatabase != "" {
+		dbName = env.DbDatabase
 	}
 
 	ConfMongodb = configMongodb{
 		Host:     host,
-		User:     user,
 		Port:     port,
-		DbName:   dbName,
+		User:     user,
 		Password: password,
+		DbName:   dbName,
 	}
 }
